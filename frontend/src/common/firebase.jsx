@@ -25,15 +25,11 @@ const auth = getAuth();
 
 
 export const authWithGoogle = async () => {
-
-  let user = null;
-  await signInWithPopup(auth, provider).
-    then((result) => {
-      user = result.user
-    }).catch((err) => {
-      console.log(err)
-    })
-
-  return user;
-
+  try {
+    const result = await signInWithPopup(auth, provider);
+    return result.user;
+  } catch (err) {
+    console.error("Firebase Auth Error:", err);
+    throw err; // Throw the error so the UI can catch it!
+  }
 }
