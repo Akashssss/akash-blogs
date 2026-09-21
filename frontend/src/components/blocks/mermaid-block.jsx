@@ -582,7 +582,7 @@ export const MermaidBlock = createReactBlockSpec(
       }, [editor?.isEditable]);
 
       const isBlockEditable = Boolean(editor?.isEditable !== false && !isReaderMode);
-      const code = block.props.code || DIAGRAM_TEMPLATES.er.code;
+      const code = block.props.code ?? DIAGRAM_TEMPLATES.er.code;
       const view = block.props.view || "diagram";
       const currentTheme = block.props.theme || "vibrant";
 

@@ -163,8 +163,36 @@ async function importMarkdownToEditor(editor, file) {
     try {
         const blocks = await editor.tryParseMarkdownToBlocks(text);
         if (blocks && blocks.length > 0) {
-            editor.replaceBlocks(editor.document, blocks);
-            return { success: true, count: blocks.length };
+            // Auto-detect and convert mermaid codeblocks to our custom mermaid block
+            const convertMermaidBlocks = (blocksList) => {
+                return blocksList.map(block => {
+                    if (block.type === "codeBlock" && block.props?.language === "mermaid") {
+                        let codeStr = "";
+                        if (Array.isArray(block.content)) {
+                            codeStr = block.content.map(c => c.text || "").join("");
+                        } else if (typeof block.content === "string") {
+                            codeStr = block.content;
+                        }
+                        return {
+                            ...block,
+                            type: "mermaid",
+                            props: {
+                                code: codeStr,
+                                view: "diagram",
+                                theme: "vibrant"
+                            }
+                        };
+                    }
+                    if (block.children && block.children.length > 0) {
+                        block.children = convertMermaidBlocks(block.children);
+                    }
+                    return block;
+                });
+            };
+            
+            const convertedBlocks = convertMermaidBlocks(blocks);
+            editor.replaceBlocks(editor.document, convertedBlocks);
+            return { success: true, count: convertedBlocks.length };
         }
         return { success: false, error: "No content parsed from file" };
     } catch (err) {
