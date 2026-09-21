@@ -779,17 +779,20 @@ img, svg, video, canvas, audio, iframe, embed, object {
   width: 100% !important;
 }
 
-.blocknote-editor-wrapper .bn-block-content {
+.blocknote-editor-wrapper .bn-block-content,
+.blocknote-reader-view .bn-block-content {
   padding-left: 0 !important;
   margin-left: 0 !important;
   width: 100% !important;
   max-width: 100% !important;
+  flex: 1 1 100% !important;
 }
 
 .blocknote-editor-wrapper .bn-inline-content,
 .blocknote-reader-view .bn-inline-content {
   width: 100% !important;
   max-width: 100% !important;
+  flex: 1 1 100% !important;
 }
 
 /* Smooth zoom-pan-pinch container styling */
