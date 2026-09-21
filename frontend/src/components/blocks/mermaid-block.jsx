@@ -1199,7 +1199,7 @@ export const MermaidBlock = createReactBlockSpec(
                   <div className="text-destructive text-xs font-mono whitespace-pre-wrap max-w-full overflow-x-auto p-4 bg-destructive/10 rounded-xl border border-destructive/20 text-center">
                     <p className="font-bold mb-1">Diagram Syntax Error</p>
                     <p className="text-[11px] opacity-85">{error}</p>
-                    {isEditable && (
+                    {isBlockEditable && (
                       <p className="text-[10px] text-muted-foreground mt-2">Pick a template from the Templates menu above to reset.</p>
                     )}
                   </div>
@@ -1407,6 +1407,32 @@ export const MermaidBlock = createReactBlockSpec(
           )}
         </div>
       );
+    },
+    parse: (el) => {
+      // Auto-detect when importing markdown or pasting markdown
+      // BlockNote converts ` ```mermaid ` into <pre data-language="mermaid"><code>...</code></pre>
+      if (
+        el.tagName.toLowerCase() === "pre" &&
+        (el.getAttribute("data-language") === "mermaid" || el.getAttribute("class")?.includes("language-mermaid"))
+      ) {
+        return {
+          code: el.textContent || "",
+          view: "diagram",
+          theme: "vibrant"
+        };
+      }
+      // Or sometimes just <code> elements
+      if (
+        el.tagName.toLowerCase() === "code" &&
+        el.getAttribute("class")?.includes("language-mermaid")
+      ) {
+        return {
+          code: el.textContent || "",
+          view: "diagram",
+          theme: "vibrant"
+        };
+      }
+      return undefined;
     },
   }
 );
