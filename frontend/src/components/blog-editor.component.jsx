@@ -17,6 +17,7 @@ import {
     Sun, Moon, X, Package
 } from 'lucide-react';
 import { saveLocalDraft, clearLocalDraft, hasMeaningfulDraft } from '../utils/draftManager';
+import { DIAGRAM_TEMPLATES } from './blocks/mermaid-block.jsx';
 
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
