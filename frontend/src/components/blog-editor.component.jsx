@@ -169,12 +169,18 @@ async function importMarkdownToEditor(editor, file) {
                     if (block.type === "codeBlock" && block.props?.language === "mermaid") {
                         let codeStr = "";
                         if (Array.isArray(block.content)) {
-                            codeStr = block.content.map(c => c.text || "").join("");
+                            codeStr = block.content.map(c => {
+                                if (c.type === "text") return c.text || "";
+                                if (c.type === "hardBreak") return "\n";
+                                return "";
+                            }).join("");
                         } else if (typeof block.content === "string") {
                             codeStr = block.content;
                         }
+                        
+                        // Build a perfectly clean block according to the mermaid schema
                         return {
-                            ...block,
+                            id: block.id,
                             type: "mermaid",
                             props: {
                                 code: codeStr,
@@ -183,8 +189,12 @@ async function importMarkdownToEditor(editor, file) {
                             }
                         };
                     }
+                    // Recursively process children
                     if (block.children && block.children.length > 0) {
-                        block.children = convertMermaidBlocks(block.children);
+                        return {
+                            ...block,
+                            children: convertMermaidBlocks(block.children)
+                        };
                     }
                     return block;
                 });
