@@ -747,6 +747,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
   margin-left: 0 !important;
   margin-right: 0 !important;
   width: 100% !important;
+  max-width: 100% !important;
 }
 
 .blocknote-editor-wrapper .bn-block-group,
@@ -782,6 +783,13 @@ img, svg, video, canvas, audio, iframe, embed, object {
   padding-left: 0 !important;
   margin-left: 0 !important;
   width: 100% !important;
+  max-width: 100% !important;
+}
+
+.blocknote-editor-wrapper .bn-inline-content,
+.blocknote-reader-view .bn-inline-content {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Smooth zoom-pan-pinch container styling */
