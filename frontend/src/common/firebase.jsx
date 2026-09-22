@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,8 +16,8 @@ const firebaseConfig = {
   measurementId: "G-LJC1R0PV2Q"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase safely (prevents duplicate app or uninitialized app issues during Vite HMR)
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 
 const provider = new GoogleAuthProvider();
