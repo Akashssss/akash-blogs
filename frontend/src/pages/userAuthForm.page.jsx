@@ -69,7 +69,8 @@ export default function UserAuthForm({ type }) {
         try {
             setIsSubmitting(true);
             const user = await authWithGoogle();
-            const formData = { access_token: user.accessToken };
+            const idToken = await user.getIdToken();
+            const formData = { access_token: idToken };
             userAuthThroughServer("/google-auth", formData);
         } catch (error) {
             setIsSubmitting(false);

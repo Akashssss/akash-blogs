@@ -16,15 +16,17 @@ const firebaseConfig = {
   measurementId: "G-LJC1R0PV2Q"
 };
 
-// Initialize Firebase safely (prevents duplicate app or uninitialized app issues during Vite HMR)
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-
-
-const provider = new GoogleAuthProvider();
-const auth = getAuth(app);
-
+// Function to safely obtain or initialize the Firebase App
+const getFirebaseApp = () => {
+  return getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+};
 
 export const authWithGoogle = async () => {
+  const app = getFirebaseApp();
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+
   try {
     const result = await signInWithPopup(auth, provider);
     return result.user;
@@ -32,4 +34,4 @@ export const authWithGoogle = async () => {
     console.error("Firebase Auth Error:", err);
     throw err; // Throw the error so the UI can catch it!
   }
-}
+};
