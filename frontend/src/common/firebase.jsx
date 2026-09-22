@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 
 
 const provider = new GoogleAuthProvider();
-const auth = getAuth();
+const auth = getAuth(app);
 
 
 export const authWithGoogle = async () => {
