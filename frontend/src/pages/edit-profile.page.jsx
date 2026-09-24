@@ -5,7 +5,7 @@ import { profileDataStructure } from './profile.page';
 import AnimationWrapper from '../common/page-animation';
 import toast, { Toaster } from 'react-hot-toast';
 import InputBox from '../components/input.component';
-import { uploadImage } from '../utils/imageUploadUtils';
+import { uploadAvatarImage } from '../utils/imageUploadUtils';
 import { storeInSession } from '../common/session';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -53,7 +53,7 @@ export default function EditProfile() {
         setIsUploadingImg(true);
         const loadingToast = toast.loading("Compressing and uploading image...");
         try {
-            const response = await uploadImage(updatedProfileImg);
+            const response = await uploadAvatarImage(updatedProfileImg);
             if (response.success) {
                 const { data } = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + '/update-profile-image', { url: response.file.url }, {
                     headers: {

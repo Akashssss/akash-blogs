@@ -106,6 +106,7 @@ export default function UserAuthForm({ type }) {
                                 <InputBox
                                     label="Full Name"
                                     type="text"
+                                    id="fullname"
                                     name="fullname"
                                     placeholder="Jane Doe"
                                     icon="user"
@@ -115,6 +116,7 @@ export default function UserAuthForm({ type }) {
                             <InputBox
                                 label="Email Address"
                                 type="email"
+                                id="email"
                                 name="email"
                                 placeholder="you@example.com"
                                 icon="envelope"
@@ -123,6 +125,7 @@ export default function UserAuthForm({ type }) {
                             <InputBox
                                 label="Password"
                                 type="password"
+                                id="password"
                                 name="password"
                                 placeholder="••••••••"
                                 icon="key"

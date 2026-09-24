@@ -12,7 +12,20 @@ export const initFirebase = () => {
         if (admin.apps.length > 0) return admin.app();
 
         if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-            const serviceAccountKey = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+            // dotenv does NOT strip surrounding single-quotes — handle both ' and " wrapped values
+            let raw = process.env.FIREBASE_SERVICE_ACCOUNT.trim();
+            if ((raw.startsWith("'") && raw.endsWith("'")) ||
+                (raw.startsWith('"') && raw.endsWith('"'))) {
+                raw = raw.slice(1, -1);
+            }
+
+            const serviceAccountKey = JSON.parse(raw);
+
+            // Ensure the private key has real newlines (env vars may store literal \n)
+            if (serviceAccountKey.private_key && !serviceAccountKey.private_key.includes('\n')) {
+                serviceAccountKey.private_key = serviceAccountKey.private_key.replace(/\\n/g, '\n');
+            }
+
             admin.initializeApp({
                 credential: admin.credential.cert(serviceAccountKey)
             });
@@ -22,6 +35,7 @@ export const initFirebase = () => {
         }
     } catch (error) {
         console.error('[Firebase Admin] Initialization error:', error.message);
+        console.error('[Firebase Admin] Tip: Ensure FIREBASE_SERVICE_ACCOUNT is valid JSON (no surrounding single-quotes, proper escaping).');
     }
 };
 

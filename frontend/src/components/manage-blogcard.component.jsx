@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Trash2, Edit3, Eye, Heart, MessageSquare, AlertTriangle } from 'lucide-react';
+import { toast, Toaster } from 'react-hot-toast';
 
 const BlogStats = ({ stats = {} }) => {
     return (
@@ -68,6 +69,8 @@ export function ManagePublishedBlogCard({ blog }) {
             });
         } catch (error) {
             console.error('Error deleting blog:', error);
+            toast.error(error.response?.data?.error || 'Failed to delete story. Please try again.');
+            setIsDeleteDialogOpen(false);
         } finally {
             setIsDeleting(false);
         }
@@ -75,6 +78,7 @@ export function ManagePublishedBlogCard({ blog }) {
 
     return (
         <>
+            <Toaster />
             <div className="flex gap-6 border-b border-border pb-6 mb-6 items-center p-3 rounded-2xl hover:bg-muted/40 transition-all duration-150">
                 {banner && (
                     <img

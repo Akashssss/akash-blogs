@@ -5,24 +5,35 @@ import { ApiError } from '../../utils/ApiError.js';
 export class GoogleDriveService {
     constructor() {
         this.drive = null;
-        this.folderId = process.env.GOOGLE_DRIVE_FOLDER_ID || null;
+        // Support both full sharing URLs and raw folder IDs
+        const rawFolderId = process.env.GOOGLE_DRIVE_FOLDER_ID || null;
+        this.folderId = rawFolderId ? this._extractFolderId(rawFolderId) : null;
+        if (rawFolderId && this.folderId !== rawFolderId) {
+            console.log(`[GoogleDrive] Parsed folder ID from URL: ${this.folderId}`);
+        }
         this.initClient();
+    }
+
+    /**
+     * Extracts a bare folder ID from a Google Drive sharing URL or returns the value as-is.
+     * Handles formats:
+     *   https://drive.google.com/drive/folders/{id}?usp=sharing
+     *   https://drive.google.com/drive/u/0/folders/{id}
+     *   raw ID: 14ipLT-oSlkJ2Bb2zNy8dyHO78MOxxwKZ
+     */
+    _extractFolderId(value) {
+        try {
+            const match = value.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+            return match ? match[1] : value.trim();
+        } catch {
+            return value;
+        }
     }
 
     initClient() {
         try {
-            // Check for Service Account credentials in environment or service account file
-            if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
-                const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
-                const auth = new google.auth.JWT(
-                    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-                    null,
-                    privateKey,
-                    ['https://www.googleapis.com/auth/drive']
-                );
-                this.drive = google.drive({ version: 'v3', auth });
-                console.log('[GoogleDrive] Initialized with Service Account');
-            } else if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_REFRESH_TOKEN) {
+            // 1. Prefer OAuth2 Refresh Token (Personal Google Drive with 15GB free quota)
+            if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_REFRESH_TOKEN) {
                 const oauth2Client = new google.auth.OAuth2(
                     process.env.GOOGLE_CLIENT_ID,
                     process.env.GOOGLE_CLIENT_SECRET,
@@ -30,7 +41,20 @@ export class GoogleDriveService {
                 );
                 oauth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
                 this.drive = google.drive({ version: 'v3', auth: oauth2Client });
-                console.log('[GoogleDrive] Initialized with OAuth2 Refresh Token');
+                console.log('[GoogleDrive] Initialized with OAuth2 Refresh Token (Personal Drive - 15GB Quota)');
+            // 2. Fall back to Service Account (Requires Shared Drive / Workspace)
+            } else if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+                let privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n').trim();
+                if ((privateKey.startsWith('"') && privateKey.endsWith('"')) || (privateKey.startsWith("'") && privateKey.endsWith("'"))) {
+                    privateKey = privateKey.slice(1, -1);
+                }
+                const auth = new google.auth.JWT({
+                    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+                    key: privateKey,
+                    scopes: ['https://www.googleapis.com/auth/drive']
+                });
+                this.drive = google.drive({ version: 'v3', auth });
+                console.log('[GoogleDrive] Initialized with Service Account');
             } else {
                 console.warn('[GoogleDrive] Credentials not configured in .env. Storage fallback will be used.');
             }
@@ -69,7 +93,8 @@ export class GoogleDriveService {
             const file = await this.drive.files.create({
                 resource: fileMetadata,
                 media,
-                fields: 'id, name, webViewLink, webContentLink'
+                fields: 'id, name, webViewLink, webContentLink',
+                supportsAllDrives: true
             });
 
             const fileId = file.data.id;
@@ -80,7 +105,8 @@ export class GoogleDriveService {
                 requestBody: {
                     role: 'reader',
                     type: 'anyone'
-                }
+                },
+                supportsAllDrives: true
             });
 
             // 3. High-performance direct CDN URL for Google Drive hosted images

@@ -1,5 +1,5 @@
 import { createReactBlockSpec } from "@blocknote/react";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import '@excalidraw/excalidraw/index.css';
 import { Frame, Edit2, Loader2, AlignLeft, AlignCenter, AlignRight, Trash2, X, Maximize2 } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -9,6 +9,21 @@ function ExcalidrawModal({ isOpen, onClose, onSave, initialData }) {
   const [Excalidraw, setExcalidraw] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const excalidrawApiRef = useRef(null);
+
+  // Read current theme from document (matches App.jsx which adds 'dark' class to documentElement)
+  const [isDark, setIsDark] = useState(() =>
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   // Lazy-load Excalidraw on first open
   useState(() => {
@@ -88,6 +103,7 @@ function ExcalidrawModal({ isOpen, onClose, onSave, initialData }) {
           <Excalidraw
             excalidrawAPI={(api) => { excalidrawApiRef.current = api; }}
             initialData={initialData}
+            theme={isDark ? "dark" : "light"}
             UIOptions={{
               canvasActions: { export: false, loadScene: true, saveToActiveFile: false },
             }}

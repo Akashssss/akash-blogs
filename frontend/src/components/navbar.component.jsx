@@ -34,7 +34,7 @@ export default function Navbar() {
 
     useEffect(() => {
         if (access_token) {
-            axios.get(`${import.meta.env.VITE_SERVER_DOMAIN}/new-notiification`, {
+            axios.get(`${import.meta.env.VITE_SERVER_DOMAIN}/new-notification`, {
                 headers: {
                     'Authorization': `Bearer ${access_token}`
                 }

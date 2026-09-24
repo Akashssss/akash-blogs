@@ -783,7 +783,7 @@ export default function BlogEditor() {
             <AnimationWrapper>
                 <MobileEditorProvider editor={editor}>
                     <section className="py-4 sm:py-8">
-                        <div className='mx-auto max-w-212.5 w-full px-3 sm:px-4'>
+                        <div className='mx-auto max-w-[850px] w-full px-3 sm:px-4'>
                             {/* Cover Banner Upload */}
                             <div className="relative aspect-21/9 sm:aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900/60 border-2 border-dashed border-slate-300 dark:border-slate-700/80 hover:border-purple dark:hover:border-purple transition-all group cursor-pointer shadow-sm">
                                 <label htmlFor='uploadBanner' className="w-full h-full block cursor-pointer">
@@ -866,7 +866,7 @@ export default function BlogEditor() {
 
                             {/* BlockNote Editor */}
                             <div
-                                className="blocknote-editor-wrapper w-full min-h-112.5"
+                                className="blocknote-editor-wrapper w-full min-h-[450px]"
                                 onKeyUp={handleEditorKeyUp}
                                 onKeyDownCapture={handleEditorKeyDown}
                             >

@@ -72,7 +72,7 @@ export default function SideNav() {
                         <div className='space-y-1'>
                             <NavLink
                                 to='/dashboard/analytics'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Analytics')}
                             >
                                 <LayoutDashboard className='w-4 h-4' />
@@ -81,7 +81,7 @@ export default function SideNav() {
 
                             <NavLink
                                 to='/dashboard/blogs'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Blogs')}
                             >
                                 <FileText className='w-4 h-4' />
@@ -90,7 +90,7 @@ export default function SideNav() {
 
                             <NavLink
                                 to='/dashboard/notifications'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Notifications')}
                             >
                                 <div className='relative flex items-center'>
@@ -104,7 +104,7 @@ export default function SideNav() {
 
                             <NavLink
                                 to='/editor'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Write')}
                             >
                                 <PenSquare className='w-4 h-4 text-purple' />
@@ -119,7 +119,7 @@ export default function SideNav() {
                         <div className='space-y-1'>
                             <NavLink
                                 to='/settings/edit-profile'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Edit profile')}
                             >
                                 <User className='w-4 h-4' />
@@ -128,7 +128,7 @@ export default function SideNav() {
 
                             <NavLink
                                 to='/settings/change-password'
-                                className='sidebar-link'
+                                className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                                 onClick={() => setPageState('Change password')}
                             >
                                 <Lock className='w-4 h-4' />

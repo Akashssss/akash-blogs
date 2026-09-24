@@ -246,18 +246,35 @@ export const THEME_PALETTES = {
       theme: "base",
       themeVariables: {
         darkMode: isDark,
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
+        // Primary Accents
         primaryColor: isDark ? "#6366f1" : "#4f46e5",
         primaryTextColor: "#ffffff",
         primaryBorderColor: isDark ? "#818cf8" : "#4338ca",
         lineColor: isDark ? "#818cf8" : "#4f46e5",
         secondaryColor: isDark ? "#8b5cf6" : "#7c3aed",
-        tertiaryColor: isDark ? "#06b6d4" : "#0284c7",
-        mainBkg: isDark ? "#1e1b4b" : "#eef2ff",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: isDark ? "#a78bfa" : "#6d28d9",
+        tertiaryColor: isDark ? "#1e1b4b" : "#f5f3ff",
+        tertiaryTextColor: isDark ? "#e0e7ff" : "#312e81",
+        tertiaryBorderColor: isDark ? "#4338ca" : "#c7d2fe",
+        // Main & Flowchart Nodes (High-contrast text in light and dark mode)
+        mainBkg: isDark ? "#1e1b4b" : "#f5f3ff",
+        nodeBkg: isDark ? "#1e1b4b" : "#f5f3ff",
         nodeBorder: isDark ? "#818cf8" : "#6366f1",
+        nodeTextColor: isDark ? "#f8fafc" : "#1e1b4b",
         textColor: isDark ? "#f8fafc" : "#0f172a",
-        clusterBkg: isDark ? "#0f172a" : "#f8fafc",
-        clusterBorder: isDark ? "#334155" : "#cbd5e1",
-        // ER Diagram Theme Variables
+        titleColor: isDark ? "#e0e7ff" : "#312e81",
+        // Subgraphs / Clusters
+        clusterBkg: isDark ? "#0f172a" : "#faf5ff",
+        clusterBorder: isDark ? "#4338ca" : "#c084fc",
+        clusterTextColor: isDark ? "#e0e7ff" : "#4c1d95",
+        // Connectors & Edge Labels
+        edgeLabelBackground: isDark ? "#1e1b4b" : "#ffffff",
+        defaultLinkColor: isDark ? "#818cf8" : "#4f46e5",
+        arrowheadColor: isDark ? "#818cf8" : "#4f46e5",
+        // ER Diagram
         entityBkg: isDark ? "#312e81" : "#4f46e5",
         entityBorder: isDark ? "#818cf8" : "#4338ca",
         entityTextColor: "#ffffff",
@@ -266,24 +283,71 @@ export const THEME_PALETTES = {
         attributeTextColor: isDark ? "#e0e7ff" : "#1e1b4b",
         relationColor: isDark ? "#a78bfa" : "#4f46e5",
         relationLabelColor: isDark ? "#c4b5fd" : "#4338ca",
-        relationLabelBackground: isDark ? "#0f172a" : "#ffffff",
-        // Sequence Diagram Theme Variables
+        relationLabelBackground: isDark ? "#1e1b4b" : "#ffffff",
+        // Sequence Diagram
         actorBkg: isDark ? "#312e81" : "#e0e7ff",
         actorBorder: isDark ? "#818cf8" : "#4f46e5",
         actorTextColor: isDark ? "#ffffff" : "#1e1b4b",
+        actorLineColor: isDark ? "#818cf8" : "#4f46e5",
         signalColor: isDark ? "#a78bfa" : "#4f46e5",
         signalTextColor: isDark ? "#f3f4f6" : "#1e1b4b",
         labelBoxBkgColor: isDark ? "#1e1b4b" : "#f5f3ff",
         labelBoxBorderColor: isDark ? "#818cf8" : "#4f46e5",
+        labelTextColor: isDark ? "#e0e7ff" : "#1e1b4b",
         noteBkgColor: isDark ? "#312e81" : "#ede9fe",
         noteBorderColor: isDark ? "#6366f1" : "#4f46e5",
         noteTextColor: isDark ? "#f3f4f6" : "#1e1b4b",
-        // Git Graph Variables
+        activationBkgColor: isDark ? "#4338ca" : "#c7d2fe",
+        activationBorderColor: isDark ? "#818cf8" : "#4f46e5",
+        sequenceNumberColor: "#ffffff",
+        // Class Diagram
+        classText: isDark ? "#f8fafc" : "#1e1b4b",
+        // State Diagram
+        stateBkg: isDark ? "#1e1b4b" : "#f5f3ff",
+        stateLabelColor: isDark ? "#f8fafc" : "#1e1b4b",
+        labelBackgroundColor: isDark ? "#1e1b4b" : "#ffffff",
+        transitionColor: isDark ? "#818cf8" : "#4f46e5",
+        transitionLabelColor: isDark ? "#e0e7ff" : "#1e1b4b",
+        specialStateColor: isDark ? "#818cf8" : "#4f46e5",
+        // Gantt Roadmap
+        sectionBkgColor: isDark ? "#1e293b" : "#f5f3ff",
+        altSectionBkgColor: isDark ? "#0f172a" : "#ffffff",
+        taskBkgColor: isDark ? "#6366f1" : "#4f46e5",
+        taskBorderColor: isDark ? "#818cf8" : "#4338ca",
+        taskTextColor: "#ffffff",
+        taskTextOutsideColor: isDark ? "#f8fafc" : "#0f172a",
+        taskTextLightColor: "#ffffff",
+        activeTaskBkgColor: isDark ? "#8b5cf6" : "#7c3aed",
+        doneTaskBkgColor: isDark ? "#10b981" : "#059669",
+        critBkgColor: isDark ? "#f43f5e" : "#e11d48",
+        gridColor: isDark ? "#334155" : "#e2e8f0",
+        todayLineColor: isDark ? "#f59e0b" : "#d97706",
+        // Pie Chart
+        pie1: isDark ? "#6366f1" : "#4f46e5",
+        pie2: isDark ? "#8b5cf6" : "#7c3aed",
+        pie3: isDark ? "#06b6d4" : "#0284c7",
+        pie4: isDark ? "#10b981" : "#059669",
+        pie5: isDark ? "#f59e0b" : "#d97706",
+        pie6: isDark ? "#ec4899" : "#db2777",
+        pieTitleTextColor: isDark ? "#f8fafc" : "#0f172a",
+        pieSectionTextColor: "#ffffff",
+        pieLegendTextColor: isDark ? "#f8fafc" : "#0f172a",
+        pieStrokeColor: isDark ? "#0f172a" : "#ffffff",
+        // Git Graph
         git0: "#6366f1",
         git1: "#10b981",
         git2: "#f59e0b",
         git3: "#ec4899",
         git4: "#06b6d4",
+        gitBranchLabel0: "#ffffff",
+        gitBranchLabel1: "#ffffff",
+        gitBranchLabel2: "#ffffff",
+        gitBranchLabel3: "#ffffff",
+        gitBranchLabel4: "#ffffff",
+        commitLabelColor: isDark ? "#f8fafc" : "#0f172a",
+        commitLabelBackground: isDark ? "#1e1b4b" : "#f1f5f9",
+        tagLabelColor: "#ffffff",
+        tagLabelBackground: isDark ? "#6366f1" : "#4f46e5",
       }
     })
   },
@@ -294,27 +358,58 @@ export const THEME_PALETTES = {
       theme: "base",
       themeVariables: {
         darkMode: isDark,
-        primaryColor: "#0284c7",
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
+        primaryColor: isDark ? "#38bdf8" : "#0284c7",
         primaryTextColor: "#ffffff",
-        primaryBorderColor: "#0369a1",
+        primaryBorderColor: isDark ? "#7dd3fc" : "#0369a1",
         lineColor: isDark ? "#38bdf8" : "#0284c7",
-        secondaryColor: "#06b6d4",
+        secondaryColor: isDark ? "#06b6d4" : "#0891b2",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: isDark ? "#67e8f9" : "#0e7490",
         tertiaryColor: isDark ? "#082f49" : "#f0f9ff",
-        mainBkg: isDark ? "#0c4a6e" : "#e0f2fe",
-        nodeBorder: "#0284c7",
+        tertiaryTextColor: isDark ? "#e0f2fe" : "#075985",
+        tertiaryBorderColor: isDark ? "#0369a1" : "#bae6fd",
+        mainBkg: isDark ? "#082f49" : "#f0f9ff",
+        nodeBkg: isDark ? "#082f49" : "#f0f9ff",
+        nodeBorder: isDark ? "#38bdf8" : "#0284c7",
+        nodeTextColor: isDark ? "#f0f9ff" : "#0c4a6e",
         textColor: isDark ? "#f0f9ff" : "#0f172a",
+        titleColor: isDark ? "#7dd3fc" : "#0369a1",
         clusterBkg: isDark ? "#032b43" : "#f0f9ff",
+        clusterBorder: isDark ? "#075985" : "#7dd3fc",
+        clusterTextColor: isDark ? "#7dd3fc" : "#0369a1",
+        edgeLabelBackground: isDark ? "#082f49" : "#ffffff",
+        defaultLinkColor: isDark ? "#38bdf8" : "#0284c7",
+        arrowheadColor: isDark ? "#38bdf8" : "#0284c7",
         entityBkg: isDark ? "#0369a1" : "#0284c7",
         entityBorder: isDark ? "#38bdf8" : "#0369a1",
         entityTextColor: "#ffffff",
-        attributeBackgroundColorOdd: isDark ? "#0c4a6e" : "#e0f2fe",
-        attributeBackgroundColorEven: isDark ? "#072d47" : "#f8fafc",
-        attributeTextColor: isDark ? "#e0f2fe" : "#0369a1",
+        attributeBackgroundColorOdd: isDark ? "#082f49" : "#f0f9ff",
+        attributeBackgroundColorEven: isDark ? "#052033" : "#ffffff",
+        attributeTextColor: isDark ? "#e0f2fe" : "#0c4a6e",
         relationColor: isDark ? "#38bdf8" : "#0284c7",
         relationLabelColor: isDark ? "#7dd3fc" : "#0369a1",
         relationLabelBackground: isDark ? "#082f49" : "#ffffff",
-        actorBkg: isDark ? "#0c4a6e" : "#e0f2fe",
-        actorBorder: "#0284c7",
+        actorBkg: isDark ? "#0369a1" : "#e0f2fe",
+        actorBorder: isDark ? "#38bdf8" : "#0284c7",
+        actorTextColor: isDark ? "#ffffff" : "#0c4a6e",
+        actorLineColor: isDark ? "#38bdf8" : "#0284c7",
+        signalColor: isDark ? "#38bdf8" : "#0284c7",
+        signalTextColor: isDark ? "#f0f9ff" : "#0c4a6e",
+        labelBoxBkgColor: isDark ? "#082f49" : "#f0f9ff",
+        labelBoxBorderColor: isDark ? "#38bdf8" : "#0284c7",
+        labelTextColor: isDark ? "#e0f2fe" : "#0c4a6e",
+        noteBkgColor: isDark ? "#075985" : "#e0f2fe",
+        noteBorderColor: isDark ? "#38bdf8" : "#0284c7",
+        noteTextColor: isDark ? "#f0f9ff" : "#0c4a6e",
+        classText: isDark ? "#f0f9ff" : "#0c4a6e",
+        stateBkg: isDark ? "#082f49" : "#f0f9ff",
+        stateLabelColor: isDark ? "#f0f9ff" : "#0c4a6e",
+        labelBackgroundColor: isDark ? "#082f49" : "#ffffff",
+        transitionColor: isDark ? "#38bdf8" : "#0284c7",
+        transitionLabelColor: isDark ? "#7dd3fc" : "#0c4a6e",
+        specialStateColor: isDark ? "#38bdf8" : "#0284c7",
         git0: "#0284c7",
         git1: "#06b6d4",
         git2: "#38bdf8",
@@ -328,24 +423,58 @@ export const THEME_PALETTES = {
       theme: "base",
       themeVariables: {
         darkMode: isDark,
-        primaryColor: "#059669",
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
+        primaryColor: isDark ? "#34d399" : "#059669",
         primaryTextColor: "#ffffff",
-        primaryBorderColor: "#047857",
+        primaryBorderColor: isDark ? "#6ee7b7" : "#047857",
         lineColor: isDark ? "#34d399" : "#059669",
-        secondaryColor: "#10b981",
+        secondaryColor: isDark ? "#10b981" : "#047857",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: isDark ? "#6ee7b7" : "#065f46",
         tertiaryColor: isDark ? "#064e3b" : "#ecfdf5",
-        mainBkg: isDark ? "#064e3b" : "#d1fae5",
-        nodeBorder: "#059669",
+        tertiaryTextColor: isDark ? "#d1fae5" : "#065f46",
+        tertiaryBorderColor: isDark ? "#059669" : "#a7f3d0",
+        mainBkg: isDark ? "#064e3b" : "#ecfdf5",
+        nodeBkg: isDark ? "#064e3b" : "#ecfdf5",
+        nodeBorder: isDark ? "#34d399" : "#059669",
+        nodeTextColor: isDark ? "#ecfdf5" : "#064e3b",
         textColor: isDark ? "#ecfdf5" : "#064e3b",
+        titleColor: isDark ? "#6ee7b7" : "#065f46",
+        clusterBkg: isDark ? "#022c22" : "#f0fdf4",
+        clusterBorder: isDark ? "#047857" : "#86efac",
+        clusterTextColor: isDark ? "#6ee7b7" : "#065f46",
+        edgeLabelBackground: isDark ? "#064e3b" : "#ffffff",
+        defaultLinkColor: isDark ? "#34d399" : "#059669",
+        arrowheadColor: isDark ? "#34d399" : "#059669",
         entityBkg: isDark ? "#047857" : "#059669",
         entityBorder: isDark ? "#34d399" : "#047857",
         entityTextColor: "#ffffff",
-        attributeBackgroundColorOdd: isDark ? "#064e3b" : "#d1fae5",
+        attributeBackgroundColorOdd: isDark ? "#064e3b" : "#ecfdf5",
         attributeBackgroundColorEven: isDark ? "#022c22" : "#ffffff",
         attributeTextColor: isDark ? "#d1fae5" : "#065f46",
         relationColor: isDark ? "#34d399" : "#059669",
         relationLabelColor: isDark ? "#6ee7b7" : "#047857",
         relationLabelBackground: isDark ? "#022c22" : "#ffffff",
+        actorBkg: isDark ? "#047857" : "#d1fae5",
+        actorBorder: isDark ? "#34d399" : "#059669",
+        actorTextColor: isDark ? "#ffffff" : "#064e3b",
+        actorLineColor: isDark ? "#34d399" : "#059669",
+        signalColor: isDark ? "#34d399" : "#059669",
+        signalTextColor: isDark ? "#ecfdf5" : "#064e3b",
+        labelBoxBkgColor: isDark ? "#064e3b" : "#ecfdf5",
+        labelBoxBorderColor: isDark ? "#34d399" : "#059669",
+        labelTextColor: isDark ? "#d1fae5" : "#064e3b",
+        noteBkgColor: isDark ? "#065f46" : "#d1fae5",
+        noteBorderColor: isDark ? "#34d399" : "#059669",
+        noteTextColor: isDark ? "#ecfdf5" : "#064e3b",
+        classText: isDark ? "#ecfdf5" : "#064e3b",
+        stateBkg: isDark ? "#064e3b" : "#ecfdf5",
+        stateLabelColor: isDark ? "#ecfdf5" : "#064e3b",
+        labelBackgroundColor: isDark ? "#064e3b" : "#ffffff",
+        transitionColor: isDark ? "#34d399" : "#059669",
+        transitionLabelColor: isDark ? "#6ee7b7" : "#064e3b",
+        specialStateColor: isDark ? "#34d399" : "#059669",
         git0: "#059669",
         git1: "#10b981",
         git2: "#34d399",
@@ -359,24 +488,58 @@ export const THEME_PALETTES = {
       theme: "base",
       themeVariables: {
         darkMode: isDark,
-        primaryColor: "#e11d48",
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
+        primaryColor: isDark ? "#fb7185" : "#e11d48",
         primaryTextColor: "#ffffff",
-        primaryBorderColor: "#be123c",
+        primaryBorderColor: isDark ? "#fda4af" : "#be123c",
         lineColor: isDark ? "#fb7185" : "#e11d48",
-        secondaryColor: "#f59e0b",
-        tertiaryColor: isDark ? "#18181b" : "#fff1f2",
-        mainBkg: isDark ? "#4c0519" : "#ffe4e6",
-        nodeBorder: "#e11d48",
+        secondaryColor: isDark ? "#f59e0b" : "#d97706",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: isDark ? "#fbbf24" : "#b45309",
+        tertiaryColor: isDark ? "#4c0519" : "#fff1f2",
+        tertiaryTextColor: isDark ? "#ffe4e6" : "#9f1239",
+        tertiaryBorderColor: isDark ? "#be123c" : "#fecdd3",
+        mainBkg: isDark ? "#4c0519" : "#fff1f2",
+        nodeBkg: isDark ? "#4c0519" : "#fff1f2",
+        nodeBorder: isDark ? "#fb7185" : "#e11d48",
+        nodeTextColor: isDark ? "#ffe4e6" : "#881337",
         textColor: isDark ? "#fff1f2" : "#18181b",
+        titleColor: isDark ? "#fda4af" : "#9f1239",
+        clusterBkg: isDark ? "#2b020d" : "#fff5f5",
+        clusterBorder: isDark ? "#be123c" : "#fecdd3",
+        clusterTextColor: isDark ? "#fda4af" : "#9f1239",
+        edgeLabelBackground: isDark ? "#4c0519" : "#ffffff",
+        defaultLinkColor: isDark ? "#fb7185" : "#e11d48",
+        arrowheadColor: isDark ? "#fb7185" : "#e11d48",
         entityBkg: isDark ? "#be123c" : "#e11d48",
         entityBorder: isDark ? "#fb7185" : "#be123c",
         entityTextColor: "#ffffff",
-        attributeBackgroundColorOdd: isDark ? "#4c0519" : "#ffe4e6",
+        attributeBackgroundColorOdd: isDark ? "#4c0519" : "#fff1f2",
         attributeBackgroundColorEven: isDark ? "#2b020d" : "#ffffff",
         attributeTextColor: isDark ? "#ffe4e6" : "#9f1239",
         relationColor: isDark ? "#fb7185" : "#e11d48",
         relationLabelColor: isDark ? "#fda4af" : "#9f1239",
         relationLabelBackground: isDark ? "#2b020d" : "#ffffff",
+        actorBkg: isDark ? "#be123c" : "#ffe4e6",
+        actorBorder: isDark ? "#fb7185" : "#e11d48",
+        actorTextColor: isDark ? "#ffffff" : "#881337",
+        actorLineColor: isDark ? "#fb7185" : "#e11d48",
+        signalColor: isDark ? "#fb7185" : "#e11d48",
+        signalTextColor: isDark ? "#fff1f2" : "#881337",
+        labelBoxBkgColor: isDark ? "#4c0519" : "#fff1f2",
+        labelBoxBorderColor: isDark ? "#fb7185" : "#e11d48",
+        labelTextColor: isDark ? "#ffe4e6" : "#9f1239",
+        noteBkgColor: isDark ? "#9f1239" : "#fee2e2",
+        noteBorderColor: isDark ? "#fb7185" : "#e11d48",
+        noteTextColor: isDark ? "#fff1f2" : "#881337",
+        classText: isDark ? "#fff1f2" : "#881337",
+        stateBkg: isDark ? "#4c0519" : "#fff1f2",
+        stateLabelColor: isDark ? "#ffe4e6" : "#881337",
+        labelBackgroundColor: isDark ? "#4c0519" : "#ffffff",
+        transitionColor: isDark ? "#fb7185" : "#e11d48",
+        transitionLabelColor: isDark ? "#fda4af" : "#881337",
+        specialStateColor: isDark ? "#fb7185" : "#e11d48",
         git0: "#e11d48",
         git1: "#f59e0b",
         git2: "#fb7185",
@@ -390,16 +553,31 @@ export const THEME_PALETTES = {
       theme: "dark",
       themeVariables: {
         darkMode: true,
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
         background: "#090d16",
         primaryColor: "#8b5cf6",
         primaryTextColor: "#ffffff",
         primaryBorderColor: "#7c3aed",
         lineColor: "#a78bfa",
         secondaryColor: "#06b6d4",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: "#0891b2",
         tertiaryColor: "#1e1b4b",
-        mainBkg: "#090d16",
+        tertiaryTextColor: "#c4b5fd",
+        tertiaryBorderColor: "#6d28d9",
+        mainBkg: "#0f172a",
+        nodeBkg: "#0f172a",
         nodeBorder: "#7c3aed",
+        nodeTextColor: "#f3f4f6",
         textColor: "#f3f4f6",
+        titleColor: "#c4b5fd",
+        clusterBkg: "#090d16",
+        clusterBorder: "#4338ca",
+        clusterTextColor: "#c4b5fd",
+        edgeLabelBackground: "#1e1b4b",
+        defaultLinkColor: "#a78bfa",
+        arrowheadColor: "#a78bfa",
         entityBkg: "#7c3aed",
         entityBorder: "#a78bfa",
         entityTextColor: "#ffffff",
@@ -409,6 +587,25 @@ export const THEME_PALETTES = {
         relationColor: "#06b6d4",
         relationLabelColor: "#67e8f9",
         relationLabelBackground: "#090d16",
+        actorBkg: "#6d28d9",
+        actorBorder: "#8b5cf6",
+        actorTextColor: "#ffffff",
+        actorLineColor: "#a78bfa",
+        signalColor: "#a78bfa",
+        signalTextColor: "#f3f4f6",
+        labelBoxBkgColor: "#1e1b4b",
+        labelBoxBorderColor: "#7c3aed",
+        labelTextColor: "#e0e7ff",
+        noteBkgColor: "#581c87",
+        noteBorderColor: "#8b5cf6",
+        noteTextColor: "#f3f4f6",
+        classText: "#f3f4f6",
+        stateBkg: "#1e1b4b",
+        stateLabelColor: "#f3f4f6",
+        labelBackgroundColor: "#090d16",
+        transitionColor: "#a78bfa",
+        transitionLabelColor: "#c4b5fd",
+        specialStateColor: "#8b5cf6",
         git0: "#8b5cf6",
         git1: "#06b6d4",
         git2: "#a78bfa",
@@ -422,15 +619,30 @@ export const THEME_PALETTES = {
       theme: "base",
       themeVariables: {
         darkMode: isDark,
+        fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+        fontSize: "13px",
         primaryColor: isDark ? "#94a3b8" : "#475569",
         primaryTextColor: "#ffffff",
-        primaryBorderColor: isDark ? "#64748b" : "#334155",
+        primaryBorderColor: isDark ? "#cbd5e1" : "#334155",
         lineColor: isDark ? "#94a3b8" : "#475569",
-        secondaryColor: isDark ? "#cbd5e1" : "#64748b",
+        secondaryColor: isDark ? "#64748b" : "#64748b",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: isDark ? "#94a3b8" : "#475569",
         tertiaryColor: isDark ? "#0f172a" : "#f1f5f9",
+        tertiaryTextColor: isDark ? "#e2e8f0" : "#1e293b",
+        tertiaryBorderColor: isDark ? "#334155" : "#cbd5e1",
         mainBkg: isDark ? "#1e293b" : "#f8fafc",
+        nodeBkg: isDark ? "#1e293b" : "#f8fafc",
         nodeBorder: isDark ? "#64748b" : "#94a3b8",
+        nodeTextColor: isDark ? "#f8fafc" : "#0f172a",
         textColor: isDark ? "#f8fafc" : "#0f172a",
+        titleColor: isDark ? "#e2e8f0" : "#1e293b",
+        clusterBkg: isDark ? "#0f172a" : "#f1f5f9",
+        clusterBorder: isDark ? "#334155" : "#cbd5e1",
+        clusterTextColor: isDark ? "#e2e8f0" : "#1e293b",
+        edgeLabelBackground: isDark ? "#1e293b" : "#ffffff",
+        defaultLinkColor: isDark ? "#94a3b8" : "#475569",
+        arrowheadColor: isDark ? "#94a3b8" : "#475569",
         entityBkg: isDark ? "#334155" : "#475569",
         entityBorder: isDark ? "#64748b" : "#334155",
         entityTextColor: "#ffffff",
@@ -440,6 +652,25 @@ export const THEME_PALETTES = {
         relationColor: isDark ? "#94a3b8" : "#475569",
         relationLabelColor: isDark ? "#cbd5e1" : "#334155",
         relationLabelBackground: isDark ? "#0f172a" : "#ffffff",
+        actorBkg: isDark ? "#334155" : "#e2e8f0",
+        actorBorder: isDark ? "#64748b" : "#475569",
+        actorTextColor: isDark ? "#ffffff" : "#0f172a",
+        actorLineColor: isDark ? "#94a3b8" : "#475569",
+        signalColor: isDark ? "#94a3b8" : "#475569",
+        signalTextColor: isDark ? "#f8fafc" : "#0f172a",
+        labelBoxBkgColor: isDark ? "#1e293b" : "#f1f5f9",
+        labelBoxBorderColor: isDark ? "#64748b" : "#475569",
+        labelTextColor: isDark ? "#f8fafc" : "#0f172a",
+        noteBkgColor: isDark ? "#475569" : "#e2e8f0",
+        noteBorderColor: isDark ? "#94a3b8" : "#475569",
+        noteTextColor: isDark ? "#f8fafc" : "#0f172a",
+        classText: isDark ? "#f8fafc" : "#0f172a",
+        stateBkg: isDark ? "#1e293b" : "#f8fafc",
+        stateLabelColor: isDark ? "#f8fafc" : "#0f172a",
+        labelBackgroundColor: isDark ? "#1e293b" : "#ffffff",
+        transitionColor: isDark ? "#94a3b8" : "#475569",
+        transitionLabelColor: isDark ? "#e2e8f0" : "#0f172a",
+        specialStateColor: isDark ? "#94a3b8" : "#475569",
       }
     })
   }
@@ -491,6 +722,10 @@ export const MermaidBlock = createReactBlockSpec(
   },
   {
     render: ({ block, editor }) => {
+      const code = block.props.code ?? DIAGRAM_TEMPLATES.er.code;
+      const view = block.props.view || "diagram";
+      const currentTheme = block.props.theme || "vibrant";
+
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [svgCode, setSvgCode] = useState("");
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -554,14 +789,27 @@ export const MermaidBlock = createReactBlockSpec(
       useEffect(() => {
         if (typeof document === "undefined") return;
         const observer = new MutationObserver(() => {
-          setIsDark(
+          const nowDark =
             document.documentElement.classList.contains("dark") ||
-            document.documentElement.getAttribute("data-theme") === "dark"
-          );
+            document.documentElement.getAttribute("data-theme") === "dark";
+          setIsDark(nowDark);
+          // Clear the entire SVG cache when app theme changes so all diagrams
+          // re-render with the correct dark/light palette variables.
+          svgCache.clear();
+          mermaidInitializedKey = null;
         });
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-theme"] });
         return () => observer.disconnect();
       }, []);
+
+      // Force re-render of diagram when isDark or currentTheme changes
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        hasRenderedRef.current = false;
+        setSvgCode("");
+        setError(null);
+        setIsInViewport(true);
+      }, [isDark, currentTheme]); // eslint-disable-line react-hooks/exhaustive-deps
 
       // Check if rendered inside reader view (published story reader mode)
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -582,9 +830,6 @@ export const MermaidBlock = createReactBlockSpec(
       }, [editor?.isEditable]);
 
       const isBlockEditable = Boolean(editor?.isEditable !== false && !isReaderMode);
-      const code = block.props.code ?? DIAGRAM_TEMPLATES.er.code;
-      const view = block.props.view || "diagram";
-      const currentTheme = block.props.theme || "vibrant";
 
       // ── Intersection Observer ──
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -626,6 +871,11 @@ export const MermaidBlock = createReactBlockSpec(
           }
           return;
         }
+
+        // Cache miss — clear stale SVG and re-render
+        setSvgCode("");
+        setError(null);
+        hasRenderedRef.current = false;
 
         let isMounted = true;
         const renderDiagram = async () => {
@@ -797,6 +1047,49 @@ export const MermaidBlock = createReactBlockSpec(
               object-fit: contain !important;
               margin: 0 auto !important;
             }
+            /* Flowchart & General Node Enhancements */
+            .mermaid-preview .node rect,
+            .mermaid-preview .node circle,
+            .mermaid-preview .node ellipse,
+            .mermaid-preview .node polygon,
+            .mermaid-preview .node path {
+              rx: 8px !important;
+              ry: 8px !important;
+              stroke-width: 1.5px !important;
+            }
+            .mermaid-preview .node .label,
+            .mermaid-preview .nodeLabel,
+            .mermaid-preview .node .label text {
+              font-family: inherit !important;
+              font-weight: 500 !important;
+              font-size: 13px !important;
+              line-height: 1.4 !important;
+            }
+            /* Subgraph Clusters */
+            .mermaid-preview .cluster rect {
+              rx: 12px !important;
+              ry: 12px !important;
+              stroke-width: 1.5px !important;
+            }
+            .mermaid-preview .cluster text,
+            .mermaid-preview .cluster-label span,
+            .mermaid-preview .cluster-title {
+              font-family: inherit !important;
+              font-weight: 700 !important;
+              font-size: 13px !important;
+              letter-spacing: 0.01em !important;
+            }
+            /* Edge Labels */
+            .mermaid-preview .edgeLabel {
+              font-family: inherit !important;
+              font-size: 11px !important;
+              font-weight: 600 !important;
+            }
+            .mermaid-preview .edgeLabel rect,
+            .mermaid-preview .labelBox {
+              rx: 6px !important;
+              ry: 6px !important;
+            }
             /* ER Diagram Theme-Perfect Enhancements */
             .mermaid-preview .er.entityBox {
               rx: 6px !important;
@@ -829,6 +1122,51 @@ export const MermaidBlock = createReactBlockSpec(
             .mermaid-preview .er.relationshipLabelBox {
               rx: 4px !important;
               ry: 4px !important;
+            }
+            /* Sequence Diagram */
+            .mermaid-preview .actor {
+              rx: 8px !important;
+              ry: 8px !important;
+              stroke-width: 1.5px !important;
+            }
+            .mermaid-preview text.actor > tspan {
+              font-family: inherit !important;
+              font-weight: 600 !important;
+              font-size: 12px !important;
+            }
+            .mermaid-preview .messageText {
+              font-family: inherit !important;
+              font-size: 12px !important;
+              font-weight: 500 !important;
+            }
+            .mermaid-preview .note {
+              rx: 6px !important;
+              ry: 6px !important;
+            }
+            .mermaid-preview .noteText {
+              font-family: inherit !important;
+              font-size: 11px !important;
+            }
+            /* Class Diagram */
+            .mermaid-preview .classGroup rect {
+              rx: 6px !important;
+              ry: 6px !important;
+              stroke-width: 1.25px !important;
+            }
+            .mermaid-preview .classTitle {
+              font-family: inherit !important;
+              font-weight: 700 !important;
+              font-size: 13px !important;
+            }
+            .mermaid-preview .classText {
+              font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+              font-size: 11px !important;
+            }
+            /* State Diagram */
+            .mermaid-preview .statediagram-state rect {
+              rx: 8px !important;
+              ry: 8px !important;
+              stroke-width: 1.5px !important;
             }
             @media print {
               .mermaid-block-container { break-inside: avoid !important; page-break-inside: avoid !important; border: 1px solid #e2e8f0 !important; background: transparent !important; overflow: visible !important; width: 100% !important; margin: 1.5rem 0 !important; }
